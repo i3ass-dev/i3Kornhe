@@ -15,10 +15,11 @@ main(){
   _array=$(i3list)
   eval "$_array"
 
+  # i3list[AWF] # active window floatin (1|0)
   [[ $__mode =~ ^[1-9]$ ]] && ((i3list[AWF]==1)) \
     && move_absolute
 
-  __speed="${__o[speed]:=10} px or ${__o[speed]} ppt"
+  __speed="${__o[speed]:=10} px"
 
   __dir=${__lastarg,,}
   __dir=${__dir:0:1}
@@ -62,7 +63,7 @@ main(){
 
   if ((i3list[AWF]!=1)); then
     # resize tiled
-    i3-msg -q resize "$tilesize" "${__speed}"
+    i3-msg -q "resize $tilesize ${__speed};"
   else
 
     if [[ $__mode = m ]]; then
