@@ -33,6 +33,15 @@ Show help and exit.
 
 `--version`|`-v`  
 Show version and exit.
+## updates
+
+### 2020.08.10
+
+fixed typo related issue that caused windows not being
+moved correctly. All types of containers are now resized and
+moved in pixel (px) unit. When **i3fyra** is executed from
+this script, the `--array` option is used.
+
 
 
 

@@ -170,13 +170,13 @@ would change the title to:
 CORNER is which corner of the window that will
 get moved. The CORNER is set with a direction:  
 
+
 | direction | corner
 |:----------|:------
 | Left      | topleft
 | Down      | bottomleft
 | Up        | topright
 | Right     | bottomright
-
 
 This might look strange at first, but if you look
 at the keys HJKL, you will see that there is some
@@ -214,13 +214,13 @@ One important note is that if the active window
 is tiled, `i3Kornhe` will move it normally or
 resize it according to this table:  
 
+
 | direction | resize
 |:----------|:-------------
 | Left      | shrink width
 | Down      | shrink height
 | Up        | grow height
 | Right     | grow width
-
 
 
 DEPENDENCIES
