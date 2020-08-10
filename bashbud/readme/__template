@@ -61,6 +61,7 @@ EXAMPLES
 %%examples%%
 %%fi%%
 %%if -d releasenotes%%
+
 ## updates
 
 %%cat -tn 3 releasenotes/*%%
