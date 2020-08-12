@@ -1,8 +1,8 @@
 ---
 description: >
   move and resize windows gracefully
-updated:       2020-08-10
-version:       0.038
+updated:       2020-08-12
+version:       0.039
 author:        budRich
 repo:          https://github.com/budlabs/i3ass
 created:       2017-12-12
