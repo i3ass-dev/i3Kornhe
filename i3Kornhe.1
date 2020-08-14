@@ -1,0 +1,62 @@
+.nh
+.TH I3KORNHE 1 2020\-08\-12 Linux "User Manuals"
+.SH NAME
+.PP
+\fB\fCi3Kornhe\fR \- move and resize windows gracefully
+
+.SH SYNOPSIS
+.PP
+.RS
+
+.nf
+i3Kornhe DIRECTION
+i3Kornhe move [\-\-speed|\-p SPEED] [DIRECTION]
+i3Kornhe size [\-\-speed|\-p SPEED] [DIRECTION]
+i3Kornhe 1\-9
+i3Kornhe x
+i3Kornhe \-\-help|\-h
+i3Kornhe \-\-version|\-v
+
+.fi
+.RE
+
+.SH DESCRIPTION
+.PP
+i3Kornhe provides an alternative way to move and
+resize windows in \fBi3\fP\&. It has some more
+functions then the defaults and is more
+streamlined. Resizing floating windows is done by
+first selecting a corner of the window,  and then
+moving that corner. See the wiki or the manpage
+for details and how to add the required mode in
+the i3 config file that is needed to use
+\fBi3Kornhe\fP\&.
+
+.SH OPTIONS
+.PP
+\fB\fC\-\-speed\fR|\fB\fC\-p\fR SPEED
+.br
+Sets speed or distance in pixels to use when
+moving and resizing the windows.
+
+.PP
+\fB\fC\-\-help\fR|\fB\fC\-h\fR
+.br
+Show help and exit.
+
+.PP
+\fB\fC\-\-version\fR|\fB\fC\-v\fR
+.br
+Show version and exit.
+
+.SH DEPENDENCIES
+.PP
+\fB\fCbash\fR \fB\fCgawk\fR \fB\fCi3\fR \fB\fCi3list\fR \fB\fCi3var\fR
+
+.PP
+budRich https://github.com/budlabs/i3ass
+\[la]https://github.com/budlabs/i3ass\[ra]
+
+.SH SEE ALSO
+.PP
+bash(1), awk(1), i3(1), i3list(1), i3var(1),
