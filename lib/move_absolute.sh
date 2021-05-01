@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 move_absolute(){
+
   local dir xpos ypos
+
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
+  
   dir=$__lastarg
 
   ypos=$((

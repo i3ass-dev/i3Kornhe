@@ -2,6 +2,8 @@
 
 enter_mode(){ 
 
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
+
   i3var set sizemode $__varmode
   i3var get sizetits || current_tf
 

@@ -3,11 +3,11 @@
 exit_mode(){
   local tits
 
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
+
   i3var set sizemode
   i3-msg -q mode "default"
   tits="$(i3var get sizetits)"
-
-
 
   [[ -n ${tits:-} ]] \
     && tits="${tits//\\}" \

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 set_tf(){
+
   local tf
+
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
 
   eval "$(i3list)"
 
@@ -15,7 +18,10 @@ set_tf(){
 }
 
 current_tf(){
+
   local curtf
+
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
 
   curtf="$(i3get -r o)"
   [[ ! ${curtf:-} =~ ^\"*(MOVE|SIZE) ]] && {

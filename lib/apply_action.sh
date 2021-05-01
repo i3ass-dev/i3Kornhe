@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 apply_action(){
+
   local curmo action floatsize
+
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
 
   curmo="$1"
   action=resize
