@@ -8,8 +8,8 @@ varset() {
 
   json=$(i3-msg -t get_marks)
 
-  for key in "${!_v[@]}"; do
-    val=${_v[$key]}
+  for key in "${!_vars_to_set[@]}"; do
+    val=${_vars_to_set[$key]}
 
     re="\"${key}=([^\"]*)\""
 
@@ -22,7 +22,8 @@ varset() {
     [[ $current_value ]] \
       && messy "[con_id=${i3list[RID]}] mark --toggle --add $old_mark"
 
-    messy "[con_id=${i3list[RID]}] mark --add $new_mark"
+    [[ $val ]] \
+      && messy "[con_id=${i3list[RID]}] mark --add $new_mark"
 
   done
 }

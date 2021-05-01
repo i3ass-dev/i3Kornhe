@@ -26,6 +26,7 @@ current_tf(){
 
   curtf="$(i3get -r o)"
   [[ ! ${curtf:-} =~ ^\"*(MOVE|SIZE) ]] && {
-    i3var set sizetits "$curtf"
+    _vars_to_set[sizetits]=$curtf
+    # i3var set sizetits "$curtf"
   }
 }

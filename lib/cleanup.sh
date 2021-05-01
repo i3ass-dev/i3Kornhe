@@ -8,9 +8,9 @@ cleanup() {
 
   ((__o[verbose])) || qflag='-q'
 
-  [[ -n $_msgstring ]] && i3-msg "${qflag:-}" "$_msgstring"
-  
   ((${#_vars_to_set[@]})) && varset
+
+  [[ -n $_msgstring ]] && i3-msg "${qflag:-}" "$_msgstring"
 
   ((__o[verbose])) && {
     local delta=$(( ($(date +%s%N)-_stamp) /1000 ))

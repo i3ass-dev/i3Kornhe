@@ -40,7 +40,8 @@ main(){
 
   if [[ $__mode =~ s|m ]] && ((i3list[AWF]==1)); then
     # new mode, clear old
-    i3var set sizemode
+    _vars_to_set[sizemode]=""
+    # i3var set sizemode
     curmo=""
     i3var get sizetits || current_tf
   elif [[ $__mode = m ]] && ((i3list[AWF]!=1)) && ((i3list[WSA]==i3list[WSF])); then 
