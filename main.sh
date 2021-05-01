@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
 main(){
+
+  __o[verbose]=1
+
+  ((__o[verbose])) && {
+    declare -gi _stamp
+    _stamp=$(date +%s%N)
+    ERM $'\n'"---i3Kornhe start---"
+  }
+
+  trap 'cleanup' EXIT
+
   # globals for absolute positioning
   __border_top=25 __border_bot=5
   __border_left=5 __border_right=5
