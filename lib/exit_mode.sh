@@ -9,13 +9,15 @@ exit_mode(){
   # i3var set sizemode
   messy "mode default"
   # i3-msg -q mode "default"
-  tits="$(i3var get sizetits)"
+  tits="$(varget sizetits)"
+  # tits="$(i3var get sizetits)"
 
   [[ -n ${tits:-} ]] \
     && tits="${tits//\\}" \
     || tits='%title'
 
-  sizecon="$(i3var get sizecon)"
+  sizecon="$(varget sizecon)"
+  # sizecon="$(i3var get sizecon)"
 
   _vars_to_set[sizetits]=
   # i3var set sizetits

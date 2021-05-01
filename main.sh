@@ -28,7 +28,7 @@ main(){
 
   [[ $__mode = x ]] && exit_mode
 
-  # i3list[AWF] # active window floatin (1|0)
+  # i3list[AWF] # active window floating (1|0)
   [[ $__mode =~ ^[1-9]$ ]] && ((i3list[AWF]==1)) \
     && move_absolute
 
@@ -42,13 +42,15 @@ main(){
     _vars_to_set[sizemode]=""
     # i3var set sizemode
     curmo=""
-    i3var get sizetits || current_tf
+    # i3var get sizetits || current_tf
+    varget sizetits || current_tf
   elif [[ $__mode = m ]] && ((i3list[AWF]!=1)) && ((i3list[WSA]==i3list[WSF])); then 
     # if window is tiled and workspace is i3fyra
     i3fyra -m "$__dir" --array "$_array"
     exit
   else
-    curmo="$(i3var get sizemode)"
+    curmo="$(varget sizemode)"
+    # curmo="$(i3var get sizemode)"
   fi
 
   case "$__dir" in
