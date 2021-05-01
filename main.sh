@@ -12,6 +12,9 @@ main(){
 
   trap 'cleanup' EXIT
 
+  declare -gA _v         # "i3var"s to set
+  declare -g  _msgstring # combined i3-msg
+
   # globals for absolute positioning
   __border_top=25 __border_bot=5
   __border_left=5 __border_right=5
