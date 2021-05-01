@@ -22,12 +22,11 @@ main(){
   __mode="${1:0:1}"
   __mode="${__mode,,}"
 
-
-  [[ $__mode = x ]] && exit_mode
-
   declare -A i3list
   _array=$(i3list)
   eval "$_array"
+
+  [[ $__mode = x ]] && exit_mode
 
   # i3list[AWF] # active window floatin (1|0)
   [[ $__mode =~ ^[1-9]$ ]] && ((i3list[AWF]==1)) \
