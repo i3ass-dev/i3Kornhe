@@ -4,16 +4,18 @@ varset() {
 
   ((__o[verbose])) && ERM "f ${FUNCNAME[0]}(${_v[*]})"
 
-  local key val json re mark current_value
+  local key val  re mark current_value
 
-  json=$(i3-msg -t get_marks)
+  : "${_mark_json:=$(i3-msg -t get_marks)}"
+
+  # json=$(i3-msg -t get_marks)
 
   for key in "${!_vars_to_set[@]}"; do
     val=${_vars_to_set[$key]}
 
     re="\"${key}=([^\"]*)\""
 
-    [[ $json =~ $re ]] && current_value=${BASH_REMATCH[1]}
+    [[ $_mark_json =~ $re ]] && current_value=${BASH_REMATCH[1]}
 
     new_mark="${key}=$val"
     old_mark="${key}=$current_value"
