@@ -77,7 +77,8 @@ main(){
 
   if ((i3list[AWF]!=1)); then
     # resize tiled
-    i3-msg -q "resize $tilesize ${__speed};"
+    messy "resize $tilesize ${__speed}"
+    # i3-msg -q "resize $tilesize ${__speed};"
   else
 
     if [[ $__mode = m ]]; then

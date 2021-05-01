@@ -6,7 +6,8 @@ exit_mode(){
   ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
 
   i3var set sizemode
-  i3-msg -q mode "default"
+  messy "mode default"
+  # i3-msg -q mode "default"
   tits="$(i3var get sizetits)"
 
   [[ -n ${tits:-} ]] \
@@ -18,6 +19,7 @@ exit_mode(){
   i3var set sizetits
   i3var set sizecon
 
-  i3-msg -q "[con_id=$sizecon]" title_format "${tits}"
+  messy "[con_id=$sizecon] title_format ${tits}"
+  # i3-msg -q "[con_id=$sizecon]" title_format "${tits}"
   exit
 }

@@ -14,7 +14,8 @@ set_tf(){
       "${i3list[AWX]}" "${i3list[AWY]}"
   )"
 
-  i3-msg -q "[con_id=${i3list[AWC]}]" title_format "${tf}"
+  messy "[con_id=${i3list[AWC]}] title_format ${tf}"
+  # i3-msg -q "[con_id=${i3list[AWC]}]" title_format "${tf}"
 }
 
 current_tf(){

@@ -10,7 +10,8 @@ enter_mode(){
   i3var set sizecon "${i3list[AWC]}"
 
   set_tf
-  i3-msg -q mode sizemode
+  messy mode sizemode
+  # i3-msg -q mode sizemode
 
   exit
 }

@@ -61,6 +61,7 @@ apply_action(){
 
   esac
 
-  i3-msg -q $action ${floatsize} "${__speed}"
+  messy "$action ${floatsize} ${__speed}"
+  # i3-msg -q $action ${floatsize} "${__speed}"
   set_tf
 }

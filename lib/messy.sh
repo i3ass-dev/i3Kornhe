@@ -6,7 +6,7 @@ messy() {
   # all commands at once in cleanup()
   (( __o[verbose] )) && ERM "m $*"
   (( __o[dryrun]  )) || _msgstring+="$*;"
-  i3-msg "$*"
+  # i3-msg "$*"
 }
 
 sezzy() {
