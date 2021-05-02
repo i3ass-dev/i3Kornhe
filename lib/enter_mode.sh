@@ -2,7 +2,7 @@
 
 enter_mode(){ 
 
-  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}()"
 
   i3var set sizemode $__varmode
   i3var get sizetits || current_tf
@@ -10,7 +10,6 @@ enter_mode(){
 
   set_tf
   messy mode sizemode
-  # i3-msg -q mode sizemode
 
   exit
   # echo "$__varmode"
