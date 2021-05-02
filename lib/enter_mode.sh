@@ -17,4 +17,5 @@ enter_mode(){
   # i3-msg -q mode sizemode
 
   exit
+  # echo "$__varmode"
 }

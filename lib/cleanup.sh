@@ -4,7 +4,7 @@ cleanup() {
 
   ((__o[verbose])) && ERM "f ${FUNCNAME[0]}()"
 
-  local qflag k s
+  local qflag
 
   ((__o[verbose])) || qflag='-q'
 

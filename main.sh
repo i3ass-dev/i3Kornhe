@@ -7,7 +7,7 @@ main(){
   ((__o[verbose])) && {
     declare -gi _stamp
     _stamp=$(date +%s%N)
-    ERM $'\n'"---i3Kornhe start---"
+    ERM $'\n'"---i3Kornhe $* start--- "
   }
 
   trap 'cleanup' EXIT
@@ -15,9 +15,7 @@ main(){
   declare -gA _vars_to_set # "i3var"s to set
   declare -g  _msgstring   # combined i3-msg
 
-  # globals for absolute positioning
-  __border_top=25 __border_bot=5
-  __border_left=5 __border_right=5
+  
 
   __mode="${1:0:1}"
   __mode="${__mode,,}"
@@ -29,7 +27,7 @@ main(){
   [[ $__mode = x ]] && exit_mode
 
   # i3list[AWF] # active window floating (1|0)
-  [[ $__mode =~ ^[1-9]$ ]] && ((i3list[AWF]==1)) \
+  [[ $__mode =~ ^[1-9]$ ]] && ((i3list[AWF])) \
     && move_absolute
 
   __speed="${__o[speed]:=10} px"
@@ -37,7 +35,7 @@ main(){
   __dir=${__lastarg,,}
   __dir=${__dir:0:1}
 
-  if [[ $__mode =~ s|m ]] && ((i3list[AWF]==1)); then
+  if [[ $__mode =~ s|m ]] && ((i3list[AWF])); then
     # new mode, clear old
     _vars_to_set[sizemode]=""
     # i3var set sizemode

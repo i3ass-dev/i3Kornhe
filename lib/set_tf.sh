@@ -6,7 +6,7 @@ set_tf(){
 
   ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
 
-  eval "$(i3list)"
+  # eval "$(i3list)"
 
   tf="$(
     printf '%s w:%s h:%s x:%s y:%s' \

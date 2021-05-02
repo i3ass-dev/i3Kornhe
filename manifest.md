@@ -12,7 +12,7 @@ synopsis: |
     DIRECTION [--verbose]
     move [--speed|-p SPEED] [DIRECTION] [--verbose]
     size [--speed|-p SPEED] [DIRECTION] [--verbose]
-    1-9 [--verbose]
+    1-9 [--verbose] [--margin INT] [--margin-top INT] [--margin-bottom INT] [--margin-left INT] [--margin-right INT]
     x [--verbose]
     --help|-h
     --version|-v
