@@ -11,7 +11,7 @@ apply_action(){
 
   case "$curmo" in
     topleft )
-      case "$__dir" in
+      case "$_direction" in
         u ) floatsize="grow up"      ;;
         d ) floatsize="shrink up"    ;;
         l ) floatsize="grow left"    ;;
@@ -20,7 +20,7 @@ apply_action(){
     ;;
 
     topright )
-      case "$__dir" in
+      case "$_direction" in
         u ) floatsize="grow up"      ;;
         d ) floatsize="shrink up"    ;;
         l ) floatsize="shrink right" ;;
@@ -29,7 +29,7 @@ apply_action(){
     ;;
 
     bottomleft )
-      case "$__dir" in
+      case "$_direction" in
         u ) floatsize="shrink down"   ;;
         d ) floatsize="grow down"     ;;
         l ) floatsize="grow left"     ;;
@@ -38,7 +38,7 @@ apply_action(){
     ;;
 
     bottomright )
-      case "$__dir" in
+      case "$_direction" in
         u ) floatsize="shrink down"   ;;
         d ) floatsize="grow down"     ;;
         l ) floatsize="shrink right"  ;;
@@ -48,7 +48,7 @@ apply_action(){
 
     move )
 
-      case "$__dir" in
+      case "$_direction" in
         u ) floatsize="up"       ;;
         d ) floatsize="down"     ;;
         l ) floatsize="left"     ;;
@@ -61,6 +61,6 @@ apply_action(){
 
   esac
 
-  messy "$action ${floatsize} ${__speed}"
+  messy "$action ${floatsize} $_speed"
   set_tf
 }
