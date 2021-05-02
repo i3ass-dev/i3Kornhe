@@ -301,5 +301,24 @@ fi
   || true
 
 
+cleanup() {
+
+  ((__o[verbose])) && {
+    local delta=$(( ($(date +%s%N)-_stamp) /1000 ))
+    local time=$(((delta / 1000) % 1000))
+    ERM  "---i3Kornhe done: ${time}ms---"
+  }
+}
+
+__o[verbose]=1
+
+((__o[verbose])) && {
+  declare -gi _stamp
+  _stamp=$(date +%s%N)
+  ERM $'\n'"---i3Kornhe $* start--- "
+}
+
+trap 'cleanup' EXIT
+
 main "${@:-}"
 
