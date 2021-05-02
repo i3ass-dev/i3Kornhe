@@ -8,11 +8,3 @@ messy() {
   (( __o[dryrun]  )) || _msgstring+="$*;"
   # i3-msg "$*"
 }
-
-sezzy() {
-  local criterion=$1 args
-  shift
-  args=$*
-  (( __o[verbose] )) && ERM "r [$criterion] $args"
-  (( __o[dryrun]  )) || _r["$criterion"]=$args
-}

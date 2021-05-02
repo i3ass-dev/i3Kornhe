@@ -15,7 +15,6 @@ set_tf(){
   )"
 
   messy "[con_id=${i3list[AWC]}] title_format ${tf}"
-  # i3-msg -q "[con_id=${i3list[AWC]}]" title_format "${tf}"
 }
 
 current_tf(){
@@ -26,7 +25,6 @@ current_tf(){
 
   curtf="$(i3get -r o)"
   [[ ! ${curtf:-} =~ ^\"*(MOVE|SIZE) ]] && {
-    _vars_to_set[sizetits]=$curtf
-    # i3var set sizetits "$curtf"
+    i3var set sizetits "$curtf"
   }
 }

@@ -25,7 +25,6 @@ move_absolute(){
     : i3list[WAX]+(i3list[WAW]-(i3list[AWW]+margin_right))         
   ))
 
-  # i3-msg -q "[con_id=${i3list[AWC]}]" move absolute position $xpos $ypos
   messy "[con_id=${i3list[AWC]}] move absolute position $xpos $ypos"
   __title="MOVE"
   set_tf

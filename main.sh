@@ -12,16 +12,16 @@ main(){
 
   trap 'cleanup' EXIT
 
-  declare -gA _vars_to_set # "i3var"s to set
   declare -g  _msgstring   # combined i3-msg
-
-  
 
   __mode="${1:0:1}"
   __mode="${__mode,,}"
 
-  declare -A i3list
+  # _json=${__o[json]:-$(i3-msg -t get_tree)}
+  # _array=$(i3list --json "$_json")
   _array=$(i3list)
+  
+  declare -A i3list
   eval "$_array"
 
   [[ $__mode = x ]] && exit_mode
@@ -37,18 +37,16 @@ main(){
 
   if [[ $__mode =~ s|m ]] && ((i3list[AWF])); then
     # new mode, clear old
-    _vars_to_set[sizemode]=""
-    # i3var set sizemode
+    i3var set sizemode
     curmo=""
-    # i3var get sizetits || current_tf
-    varget sizetits || current_tf
+    i3var get sizetits || current_tf
   elif [[ $__mode = m ]] && ((i3list[AWF]!=1)) && ((i3list[WSA]==i3list[WSF])); then 
     # if window is tiled and workspace is i3fyra
     i3fyra -m "$__dir" --array "$_array"
     exit
   else
-    curmo="$(varget sizemode)"
-    # curmo="$(i3var get sizemode)"
+    # curmo="$(varget sizemode)"
+    curmo="$(i3var get sizemode)"
   fi
 
   case "$__dir" in
@@ -78,7 +76,6 @@ main(){
   if ((i3list[AWF]!=1)); then
     # resize tiled
     messy "resize $tilesize ${__speed}"
-    # i3-msg -q "resize $tilesize ${__speed};"
   else
 
     if [[ $__mode = m ]]; then

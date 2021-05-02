@@ -8,8 +8,6 @@ cleanup() {
 
   ((__o[verbose])) || qflag='-q'
 
-  ((${#_vars_to_set[@]})) && varset
-
   [[ -n $_msgstring ]] && i3-msg "${qflag:-}" "$_msgstring"
 
   ((__o[verbose])) && {
