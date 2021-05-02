@@ -4,7 +4,7 @@ set_tf(){
 
   local tf
 
-  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}()"
 
   # eval "$(i3list)"
 
@@ -21,7 +21,7 @@ current_tf(){
 
   local curtf
 
-  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}()"
 
   curtf="$(i3get -r o)"
   [[ ! ${curtf:-} =~ ^\"*(MOVE|SIZE) ]] && {
