@@ -9,7 +9,7 @@ move_absolute(){
   margin_left=${__o[margin-left]:-${__o[margin]:-5}} 
   margin_right=${__o[margin-right]:-${__o[margin]:-5}}
 
-  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}($*)"
+  ((__o[verbose])) && ERM "f ${FUNCNAME[0]}()"
   
   dir=$__lastarg
 
