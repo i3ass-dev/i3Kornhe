@@ -2,7 +2,9 @@
 
 main(){
 
-  __o[verbose]=1
+  local next_mode
+
+  # __o[verbose]=1
 
   ((__o[verbose])) && {
     declare -gi _stamp
@@ -12,84 +14,52 @@ main(){
 
   trap 'cleanup' EXIT
 
-  declare -g  _msgstring   # combined i3-msg
+  declare -g  _msgstring  # combined i3-msg
+  declare -g  _array      # output from i3list
+  declare -Ag i3list      # i3list array
+  declare -Ag last        # array with last i3Kornhe info
 
-  __mode="${1:0:1}"
-  __mode="${__mode,,}"
+  # mode is first arg, size|move|x|0-9 -> s|m|x|0-9
+  next_mode="${1:0:1}" ; next_mode="${next_mode,,}"
+
+  # last arg is direction, left|right|up|down -> l|r|u|d
+  _direction=${__lastarg:0:1} ; _direction=${_direction,,}
+
+  # remove all none digits from --speed arg
+  (( ${_speed:=${__o[speed]//[!0-9]}} )) || _speed=10
 
   # _json=${__o[json]:-$(i3-msg -t get_tree)}
   # _array=$(i3list --json "$_json")
-  _array=$(i3list)
-  
-  declare -A i3list
-  eval "$_array"
+  _array=$(i3list) ; eval "$_array"
 
-  [[ $__mode = x ]] && exit_mode
+  # we store i3Korhne info a variable like this:
+  # MODE:con_id:corner:original_window_title
+  re='(s|m):([0-9]+):([^:]+):(.+)'
 
-  # i3list[AWF] # active window floating (1|0)
-  [[ $__mode =~ ^[1-9]$ ]] && ((i3list[AWF])) \
-    && move_absolute
+  [[ $(i3var get i3Kornhe) =~ $re ]] && last=(
+    [mode]=${BASH_REMATCH[1]}
+    [conid]=${BASH_REMATCH[2]}
+    [corner]=${BASH_REMATCH[3]}
+    [title]=${BASH_REMATCH[4]}
+  )
 
-  __speed="${__o[speed]:=10} px"
-
-  __dir=${__lastarg,,}
-  __dir=${__dir:0:1}
-
-  if [[ $__mode =~ s|m ]] && ((i3list[AWF])); then
-    # new mode, clear old
-    i3var set sizemode
-    curmo=""
-    i3var get sizetits || current_tf
-  elif [[ $__mode = m ]] && ((i3list[AWF]!=1)) && ((i3list[WSA]==i3list[WSF])); then 
-    # if window is tiled and workspace is i3fyra
-    i3fyra -m "$__dir" --array "$_array"
-    exit
-  else
-    # curmo="$(varget sizemode)"
-    curmo="$(i3var get sizemode)"
+  if [[ $_direction =~ ^[1-9]$ ]]; then
+    next_mode=m
+  elif [[ $next_mode = s && ${last[mode]} = s ]]; then
+    last[corner]=""
+  elif [[ $next_mode != x && $next_mode = $_direction ]]; then
+    next_mode=${last[mode]:-x}
   fi
 
-  case "$__dir" in
+  # reset to default mode if its not the same window
+  # having focus as when we initiated i3Korhne.
+  [[ $next_mode = x ]] && exit_mode
 
-    l  ) 
-      __varmode="topleft"
-      tilesize="shrink width"
-    ;;
-
-    r ) 
-      __varmode="bottomright"
-      tilesize="grow width"
-    ;;
-
-    u    ) 
-      __varmode="topright"
-      tilesize="grow height" 
-    ;;
-
-    d  ) 
-      __varmode="bottomleft"
-      tilesize="shrink height" 
-    ;;
-
-  esac
-
-  if ((i3list[AWF]!=1)); then
-    # resize tiled
-    messy "resize $tilesize ${__speed}"
+  # i3list[AWF] # active window floating (1|0)
+  if ((i3list[AWF])); then
+    modify_floating
   else
-
-    if [[ $__mode = m ]]; then
-      __varmode=move
-      __title="MOVE"
-    else
-      __title="SIZE:${curmo:-$__varmode}"
-    fi
-
-    if [[ -z $curmo ]]; then 
-      enter_mode
-    else
-      apply_action "$curmo"
-    fi
+    modify_tiled
   fi
 }
 
