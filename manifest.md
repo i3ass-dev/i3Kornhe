@@ -9,7 +9,7 @@ created:       2017-12-12
 dependencies:  [bash, gawk, i3, i3list, i3var]
 see-also:      [bash(1), awk(1), i3(1), i3list(1), i3var(1)]
 synopsis: |
-    DIRECTION [--verbose]
+    DIRECTION [--verbose] [--array]
     move [--speed|-p SPEED] [DIRECTION] [--verbose]
     size [--speed|-p SPEED] [DIRECTION] [--verbose]
     1-9 [--verbose] [--margin INT] [--margin-top INT] [--margin-bottom INT] [--margin-left INT] [--margin-right INT]
