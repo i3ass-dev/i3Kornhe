@@ -26,7 +26,8 @@ main(){
   _direction=${__lastarg:0:1} ; _direction=${_direction,,}
 
   # remove all none digits from --speed arg
-  (( ${_speed:=${__o[speed]//[!0-9]}} )) || _speed=10
+  : "${_speed:=${__o[speed]//[!0-9]}}"
+  (( _speed >= 0 )) || _speed=10
 
   # _json=${__o[json]:-$(i3-msg -t get_tree)}
   # _array=$(i3list --json "$_json")
