@@ -1,9 +1,12 @@
 # readme_usage
 
-To use this script a [bindingmode](https://i3wm.org/docs/userguide.html#binding_modes) named `sizemode` needs to be set in your i3 config file. Below is how I have set up this mode:
+To use this script a [bindingmode] named
+`sizemode` needs to be set in your i3 config
+file. Below is how I have set up this mode:  
+
+[bindingmode]: https://i3wm.org/docs/userguide.html#binding_modes
 
 `~/.config/i3/config`   
-
 ``` text
 
 ...
@@ -64,7 +67,12 @@ mode "sizemode" {
 }
 ```
 
-As you can see there are a lot of keybinding definitions, but keep in mind, without `i3Kornhe` you would need, one mode for every direction and action (at least 8). And one reason i made this script was unclutter and shrink my own config file.  
+As you can see there are a lot of keybinding
+definitions, but keep in mind, without `i3Kornhe`
+you would need, one mode for every direction and
+action (at least 8). And one reason i made this
+script was to unclutter and shrink my own config
+file.  
 
 A tip is also to use variables in the i3config:  
 ``` text
@@ -80,26 +88,45 @@ after:
 $super+Right $i3Kornhe m -p 0 r
 ```
 
-*Notice that the first character of the mode/direction is enough. This shorter way will be used when the commands are referenced in the rest of this documentation.*  
+*Notice that the first character of the
+mode/direction is enough. This shorter way will
+be used when the commands are referenced in the
+rest of this documentation.*  
 
-Let us go through the processes that will happen when the different actions are executed.  
+Let us go through the processes that will happen
+when the different actions are executed.  
 
 *group B:*  
 `$super+Left $i3Kornhe m -p 0 l`  
 
-This will make i3Kornhe to enter **move mode**. (*it will actually activate the i3 mode sizemode, move is a pseudo mode that only i3Korhne knows*) First thing i3Kornhe does is to store the current title_format of the window (by using `i3var set`).  
+This will make i3Kornhe to enter **move mode**.
+(*it will actually activate the i3 mode sizemode,
+move is a pseudo mode that only i3Korhne knows*)
+First thing i3Kornhe does is to store the current
+title_format of the window (by using `i3var
+set`).  
 
-It will then set the `title_format` to: `MOVE w:WIDTH h:HEIGHT x:X y:Y`  
+It will then set the `title_format` to:  
+`MOVE w:WIDTH h:HEIGHT x:X y:Y`
 
-Populated with the actual dimensions and position of the window. The first word, "MOVE", in the title means that we don't need to specify the mode (move|size|m|s)  
+Populated with the actual dimensions and position
+of the window. The first word, "MOVE", in the
+title means that we don't need to specify the
+mode (move|size|m|s)  
 
-So if a keybinding from **group 1** or **group 2** is executed it will move the window in the specified direction with the specified speed (speed defaults to 10 if not set).  
+So if a keybinding from **group 1** or **group 2**
+is executed it will move the window in the
+specified direction with the specified speed
+(speed defaults to 10 if not set).  
 
-If we would execute a keybinding from **group 3**, where the mode is specified (size), this would change the title to:  
+If we would execute a keybinding from **group 3**,
+where the mode is specified (size), this would
+change the title to:  
 
 `SIZE:CORNER w:WIDTH h:HEIGHT x:X y:Y`   
 
-CORNER is which corner of the window that will get moved. The CORNER is set with a direction:  
+CORNER is which corner of the window that will get
+moved. The CORNER is set with a direction:  
 
 | direction | corner
 |:----------|:------
@@ -108,15 +135,31 @@ CORNER is which corner of the window that will get moved. The CORNER is set with
 | Up        | topright
 | Right     | bottomright
 
-This might look strange at first, but if you look at the keys HJKL, you will see that there is some logic to it.
+This might look strange at first, but if you look
+at the keys HJKL, you will see that there is some
+logic to it.
 
-If we now execute a keybinding from ***group 1*** or ***group 2*** (without a mode definition), the named corner will *get moved*. To change corner execute a keybinding from **group 3**. To switch back to MOVE mode, we only need a single keybinding (**group 4**):  
-`bindsym m $i3Kornhe m -p 0 l`
+If we now execute a keybinding from ***group 1***
+or ***group 2*** (without a mode definition), the
+named corner will *get moved*. To change corner
+execute a keybinding from **group 3**. To switch
+back to MOVE mode, we only need a single
+keybinding (**group 4**):  `bindsym m $i3Kornhe
+m -p 0 l`
 
 
-The direction and speed is needed but will not have any visual effect. To exit back to default mode execute `i3Kornhe` with `x` as the only argument, (**group 6**), this will exit the mode and reset the title_format to what it was initially.  
+The direction and speed is needed but will not
+have any visual effect. To exit back to default
+mode execute `i3Kornhe` with `x` as the only
+argument, (**group 6**), this will exit the mode
+and reset the title_format to what it was
+initially.  
 
-You can also execute `i3Kornhe` with a number in the range 1-9 as a single argument. This will move the currently active window (if it is floating) to the position corresponding to the number:  
+You can also execute `i3Kornhe` with a number in
+the range 1-9 as a single argument. This will
+move the currently active window (if it is
+floating) to the position corresponding to the
+number:  
 
 ``` text
 123
@@ -124,7 +167,9 @@ You can also execute `i3Kornhe` with a number in the range 1-9 as a single argum
 789
 ```
 
-One important note is that if the active window is tiled, `i3Kornhe` will move it normally or resize it according to this table:  
+One important note is that if the active window is
+tiled, `i3Kornhe` will move it normally or resize
+it according to this table:  
 
 | direction | resize
 |:----------|:-------------
