@@ -30,7 +30,8 @@ main(){
 
   # _json=${__o[json]:-$(i3-msg -t get_tree)}
   # _array=$(i3list --json "$_json")
-  _array=$(i3list) ; eval "$_array"
+  eval "${_array:=${__o[array]:-$(i3list)}}"
+  # _array=$(i3list) ; eval "$_array"
 
   # we store i3Korhne info a variable like this:
   # MODE:con_id:corner:original_window_title
