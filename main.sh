@@ -29,10 +29,11 @@ main(){
   : "${_speed:=${__o[speed]//[!0-9]}}"
   (( _speed >= 0 )) || _speed=10
 
-  # _json=${__o[json]:-$(i3-msg -t get_tree)}
-  # _array=$(i3list --json "$_json")
-  eval "${_array:=${__o[array]:-$(i3list)}}"
-  # _array=$(i3list) ; eval "$_array"
+  [[ ${_array:=${__o[array]}} ]] || {
+    _array=$(i3list ${__o[json]:+--json "${__o[json]}"})
+  }
+
+  eval "$_array"
 
   # we store i3Korhne info a variable like this:
   # MODE:con_id:corner:original_window_title
