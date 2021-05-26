@@ -96,31 +96,21 @@ modify_floating() {
 
     title_format="RESIZE $corner "
 
-    # U - 10 - 2
-    # D - 01 - 0
-    # L - 11 - 1
-    # R - 00 - 0
-
-    # UL 11 - 3
-    # UR 10 - 2
-    # DL 01 - 1
-    # DR 00 - 0
-
     case "$corner" in
       topleft )
-        case "$_direction" in # 11
-          u ) floatsize="grow up"      ;; # 01
-          d ) floatsize="shrink up"    ;; # 10
-          l ) floatsize="grow left"    ;; # 00
-          r ) floatsize="shrink left"  ;; # 11
+        case "$_direction" in
+          u ) floatsize="grow up"      ;;
+          d ) floatsize="shrink up"    ;;
+          l ) floatsize="grow left"    ;;
+          r ) floatsize="shrink left"  ;;
         esac
       ;;
 
       topright )
-        case "$_direction" in # 10
-          u ) floatsize="grow up"      ;; # 10
-          d ) floatsize="shrink up"    ;; # 01
-          l ) floatsize="shrink right" ;; # 11
+        case "$_direction" in
+          u ) floatsize="grow up"      ;;
+          d ) floatsize="shrink up"    ;;
+          l ) floatsize="shrink right" ;;
           r ) floatsize="grow right"   ;;
         esac
       ;;
